@@ -26,5 +26,12 @@
 
 - https://habr.com/ru/articles/259055/
 
-Список выполненных задач:
-...
+## Completed tasks:
+
+1. Removed obsolete social media integrations (VK, Yandex).
+
+2. Extracted sensitive configuration (database credentials, OAuth identifiers, mail settings) into a separate properties file. Configured the application to read these values from environment variables.
+
+3. Configured an in-memory H2 database for the test environment. Defined separate DataSource beans dynamically loaded via Spring profiles (prod and test). Adapted Liquibase scripts to support both PostgreSQL and H2 dialects.
+
+4. Implemented comprehensive integration tests for ProfileRestController covering all success and failure paths (unauthorized access, payload validation).
