@@ -35,3 +35,7 @@
 3. Configured an in-memory H2 database for the test environment. Defined separate DataSource beans dynamically loaded via Spring profiles (prod and test). Adapted Liquibase scripts to support both PostgreSQL and H2 dialects.
 
 4. Implemented comprehensive integration tests for ProfileRestController covering all success and failure paths (unauthorized access, payload validation).
+
+5. Refactored attachment upload logic in FileUtil. Enhanced security by adding strict protection against Path Traversal vulnerabilities and significantly improved memory performance by replacing full-file byte array loading with Java NIO Streams.
+
+6. Implemented Task Tags management via REST API. Added endpoints for dynamically adding and removing tags, mapped the task_tag table using @ElementCollection in the Task entity, and optimized database fetch queries to ensure seamless data retrieval.

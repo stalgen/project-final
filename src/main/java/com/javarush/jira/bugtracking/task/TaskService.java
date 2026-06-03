@@ -140,4 +140,16 @@ public class TaskService {
             throw new DataConflictException(String.format(assign ? CANNOT_ASSIGN : CANNOT_UN_ASSIGN, userType, task.getStatusCode()));
         }
     }
+
+    @Transactional
+    public void addTag(long id, String tag) {
+        Task task = handler.getRepository().getExisted(id);
+        task.getTags().add(tag);
+    }
+
+    @Transactional
+    public void removeTag(long id, String tag) {
+        Task task = handler.getRepository().getExisted(id);
+        task.getTags().remove(tag);
+    }
 }

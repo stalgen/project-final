@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,6 +29,9 @@ public class TaskToExt extends TaskTo {
     @Nullable
     @Positive
     Integer estimate;
+
+    @Nullable
+    private Set<String> tags= new HashSet<>();
 
     public TaskToExt(Long id, String code, String title, String description, String typeCode, String statusCode, String priorityCode,
                      LocalDateTime updated, Integer estimate, Long parentId, long projectId, Long sprintId) {
