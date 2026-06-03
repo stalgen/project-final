@@ -152,4 +152,36 @@ public class TaskService {
         Task task = handler.getRepository().getExisted(id);
         task.getTags().remove(tag);
     }
+
+    public long getTimeInWork(long taskId) {
+        return calculateTimeBetweenStatuses(taskId, "in_progress", "ready_for_review");
+    }
+
+    public long getTimeInTesting(long taskId) {
+        return calculateTimeBetweenStatuses(taskId, "ready_for_review", "done");
+    }
+
+    private long calculateTimeBetweenStatuses(long taskId, String startStatus, String endStatus) {
+        List<Activity> activities = activityHandler.getRepository().findAllByTaskIdOrderByUpdatedDesc(taskId);
+
+        LocalDateTime startTime = null;
+        LocalDateTime endTime = null;
+
+        for (int i = activities.size() - 1; i >= 0; i--) {
+            Activity activity = activities.get(i);
+
+            if (startStatus.equals(activity.getStatusCode()) && startTime == null) {
+                startTime = activity.getUpdated();
+            }
+            if (endStatus.equals(activity.getStatusCode()) && endTime == null) {
+                endTime = activity.getUpdated();
+            }
+        }
+
+        if (startTime != null && endTime != null) {
+            return java.time.Duration.between(startTime, endTime).toMillis();
+        }
+
+        return 0L;
+    }
 }

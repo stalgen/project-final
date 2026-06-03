@@ -39,3 +39,5 @@
 5. Refactored attachment upload logic in FileUtil. Enhanced security by adding strict protection against Path Traversal vulnerabilities and significantly improved memory performance by replacing full-file byte array loading with Java NIO Streams.
 
 6. Implemented Task Tags management via REST API. Added endpoints for dynamically adding and removing tags, mapped the task_tag table using @ElementCollection in the Task entity, and optimized database fetch queries to ensure seamless data retrieval.
+
+7. Added Time-in-Status tracking. Implemented service-level logic (getTimeInWork and getTimeInTesting in TaskService) to calculate the exact duration a task spends in specific development phases based on its activity history. Inserted mock transition data into the database initialization script for testing.
