@@ -72,6 +72,9 @@ public class MailService {
             }
         } catch (Exception e) {
             result = e.getMessage();
+            if (result != null && result.length() > 255) {
+                result = result.substring(0, 255);
+            }
             log.error("Sending to {} failed: \n{}", toEmail, result);
             mailCaseRepository.save(new MailCase(toEmail, toName, template, result));
         }

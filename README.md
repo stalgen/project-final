@@ -43,3 +43,5 @@
 7. Added Time-in-Status tracking. Implemented service-level logic (getTimeInWork and getTimeInTesting in TaskService) to calculate the exact duration a task spends in specific development phases based on its activity history. Inserted mock transition data into the database initialization script for testing.
 
 8. Containerized the application. Created a lightweight Dockerfile based on eclipse-temurin Alpine image to package the Spring Boot main server for easy deployment and distribution.
+
+9. Orchestrated the application infrastructure using Docker Compose. Created a docker-compose.yaml file to simultaneously run the PostgreSQL database, the Spring Boot backend, and an Nginx reverse proxy within an isolated container network. Refactored the config/nginx.conf file to correctly route requests, configure essential X-Forwarded-* headers (resolving infinite redirect loops with Spring Security), and mapped static resources via Docker volumes for seamless UI and email template rendering.
