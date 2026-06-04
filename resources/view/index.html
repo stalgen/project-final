@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<!--/*@thymesVar id="authUser" type="com.javarush.jira.login.AuthUser"*/-->
-
-<th:block th:replace="~{layout/main::page(title='JiraRush: mini bugtracking system',appMain=~{::appMain})}">
+<th:block th:replace="~{layout/main::page(title=#{page.index.title},appMain=~{::appMain})}">
     <appMain>
-        <h1>JiraRush Home page</h1>
+
+        <div class="mb-3">
+            <a href="?lang=en" class="btn btn-outline-secondary btn-sm">EN</a>
+            <a href="?lang=uk" class="btn btn-outline-secondary btn-sm">UK</a>
+        </div>
+
+        <h1 th:text="#{page.index.welcome}">JiraRush Home page</h1>
+
         <div th:if="${authUser} != null">
             <form action="/ui/logout" method="post">
-                <button class="btn btn-primary btn-lg mt-3" type="submit">Logout</button>
+                <button class="btn btn-primary btn-lg mt-3" type="submit" th:text="#{page.index.logout}">Logout</button>
             </form>
         </div>
     </appMain>

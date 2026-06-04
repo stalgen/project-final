@@ -82,7 +82,7 @@ public class MailService {
     }
 
     private String getContent(String template, Map<String, Object> params) {
-        Context context = new Context(LOCALE_RU, params);
+        Context context = new Context(Locale.getDefault(), params);
         return templateEngine.process(template, context);
     }
 
