@@ -73,6 +73,18 @@ values (1, 2, 2, 'task_developer', '2023-06-14 08:35:10', '2023-06-14 08:55:00')
        (2, 2, 1, 'task_developer', '2023-06-09 14:48:00', null),
        (2, 2, 1, 'task_tester', '2023-06-10 16:37:00', null);
 
+-- Test data for checking the time a task spends in statuses
+insert into PROJECT (ID, CODE, TITLE, DESCRIPTION, TYPE_CODE)
+values (99999, 'TTR', 'Time Tracking', 'Project for time tracking', 'scrum');
+
+insert into TASK (ID, TITLE, TYPE_CODE, STATUS_CODE, PROJECT_ID)
+values (99999, 'Time Task', 'task', 'done', 99999);
+
+insert into ACTIVITY (ID, AUTHOR_ID, TASK_ID, UPDATED, STATUS_CODE, TITLE, TYPE_CODE)
+values (999901, 1, 99999, '2026-06-01 10:00:00', 'in_progress', 'Time tracking test', 'task'),
+       (999902, 1, 99999, '2026-06-03 15:30:00', 'ready_for_review', 'Time tracking test', 'task'),
+       (999903, 1, 99999, '2026-06-04 12:00:00', 'done', 'Time tracking test', 'task');
+
 ALTER TABLE USERS ALTER COLUMN ID RESTART WITH 100;
 ALTER TABLE ACTIVITY ALTER COLUMN ID RESTART WITH 100;
 ALTER TABLE TASK ALTER COLUMN ID RESTART WITH 100;

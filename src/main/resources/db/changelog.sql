@@ -327,8 +327,3 @@ values ('todo', 'ToDo', 3, 'in_progress,canceled|'),
 drop index UK_USER_BELONG;
 create index UK_USER_BELONG on USER_BELONG (OBJECT_ID, OBJECT_TYPE, USER_ID, USER_TYPE_CODE);
 
--- Test data for checking the time a task spends in statuses
-insert into ACTIVITY (ID, AUTHOR_ID, TASK_ID, UPDATED, STATUS_CODE)
-values (1001, 1, 1, '2026-06-01 10:00:00', 'in_progress'),
-       (1002, 1, 1, '2026-06-03 15:30:00', 'ready_for_review'),
-       (1003, 1, 1, '2026-06-04 12:00:00', 'done');

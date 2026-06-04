@@ -41,3 +41,5 @@
 6. Implemented Task Tags management via REST API. Added endpoints for dynamically adding and removing tags, mapped the task_tag table using @ElementCollection in the Task entity, and optimized database fetch queries to ensure seamless data retrieval.
 
 7. Added Time-in-Status tracking. Implemented service-level logic (getTimeInWork and getTimeInTesting in TaskService) to calculate the exact duration a task spends in specific development phases based on its activity history. Inserted mock transition data into the database initialization script for testing.
+
+8. Containerized the application. Created a lightweight Dockerfile based on eclipse-temurin Alpine image to package the Spring Boot main server for easy deployment and distribution.
