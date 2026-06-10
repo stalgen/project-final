@@ -14,6 +14,7 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -68,7 +69,8 @@ public class Task extends TitleEntity implements HasCode {
     @ElementCollection(fetch = FetchType.LAZY)
     @JoinColumn()
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<@Size(min = 2, max = 32) String> tags = Set.of();
+    //private Set<@Size(min = 2, max = 32) String> tags = Set.of();
+    private Set<@Size(min = 2, max = 32) String> tags = new HashSet<>();
 
     //  history of comments and task fields changing
     @OneToMany(mappedBy = "taskId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

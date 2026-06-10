@@ -72,6 +72,9 @@ public class MailService {
             }
         } catch (Exception e) {
             result = e.getMessage();
+            if (result != null && result.length() > 255) {
+                result = result.substring(0, 255);
+            }
             log.error("Sending to {} failed: \n{}", toEmail, result);
             mailCaseRepository.save(new MailCase(toEmail, toName, template, result));
         }
@@ -79,7 +82,7 @@ public class MailService {
     }
 
     private String getContent(String template, Map<String, Object> params) {
-        Context context = new Context(LOCALE_RU, params);
+        Context context = new Context(Locale.getDefault(), params);
         return templateEngine.process(template, context);
     }
 
